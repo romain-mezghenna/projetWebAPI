@@ -1,0 +1,31 @@
+{
+  "name": "projetwebapi",
+  "version": "1.0.0",
+  "description": "API REST for the front-end of the project Web, S6 Polytech Montpellier IG",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romain-mezghenna/projetWebAPI.git"
+  },
+  "keywords": [
+    "API",
+    "REST",
+    "projetWebIG"
+  ],
+  "author": "Romain Mezghenna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romain-mezghenna/projetWebAPI/issues"
+  },
+  "homepage": "https://github.com/romain-mezghenna/projetWebAPI#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.15"
+  }
+}
