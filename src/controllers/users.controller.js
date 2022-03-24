@@ -50,7 +50,7 @@ exports.findOneId = (req, res) => {
     }
 };
 
-exports.saveUser = (req, res) => {
+exports.save = (req, res) => {
     Users.save(req.body, false)
         .then(() => {
             res.status(201).send({

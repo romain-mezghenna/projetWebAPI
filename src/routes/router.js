@@ -12,4 +12,12 @@ module.exports = router => {
 
     require('./users.routes')(router)
     require('./auth.routes')(router)
+    require('./astres.routes')(router)
+    require('./companies.routes')(router)
+    require('./lanceurs.routes')(router)
+    require('./pasdetir.routes')(router)
+    require('./vols.routes')(router)
+    require('./villes.routes')(router)
+    require('./pays.routes')(router)
+    require('./reserver.routes')(router)
 }

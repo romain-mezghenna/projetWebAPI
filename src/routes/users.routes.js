@@ -6,7 +6,7 @@ module.exports = (router) => {
 
     // Create a new user
     // Doen't need authentification => sign in 
-    router.post("/users", users.saveUser); // curl -i -X POST -H  "Content-type: application/json" -d '{"nomUser":"Lucas","prenomUser":"Dantzer","mail" : "tqtjsuisbonenskate@flip.géplusdegenou","password" : "aieaieaie", "tel" : "0697979797", "nomVille":"Bordeaux", "idPays":1}' localhost:9999/users
+    router.post("/users", users.save); // curl -i -X POST -H  "Content-type: application/json" -d '{"nomUser":"Lucas","prenomUser":"Dantzer","mail" : "tqtjsuisbonenskate@flip.géplusdegenou","password" : "aieaieaie", "tel" : "0697979797", "nomVille":"Bordeaux", "idPays":1}' localhost:9999/users
 
     // Retrieve all users
     router.get("/users",auth, users.findAll); // http://localhost:3000/users
