@@ -7,10 +7,10 @@ const https = require('https')
 const app = express()
 const router = express.Router()
 
-//Settings up options for HTTPS
-const key = fs.readFileSync(path.join(__dirname, 'certificate', 'server.key'));
-const cert = fs.readFileSync(path.join(__dirname, 'certificate', 'server.cert'));
-const options = { key, cert };
+// //Settings up options for HTTPS
+// const key = fs.readFileSync(path.join(__dirname, 'certificate', 'server.key'));
+// const cert = fs.readFileSync(path.join(__dirname, 'certificate', 'server.cert'));
+// const options = { key, cert };
 
 // Somes middlewares
 app.use(cors())
@@ -21,6 +21,10 @@ require("./src/routes/router.js")(router)
 app.use('/',router)
 
 const PORT = process.env.PORT || 3000
-https.createServer(options, app).listen(PORT, () => {
+
+app.listen(PORT, () => {
     console.log(`API is running on port ${PORT}, Go on https://localhost:${PORT}`);
 })
+// https.createServer(options, app).listen(PORT, () => {
+//     console.log(`API is running on port ${PORT}, Go on https://localhost:${PORT}`);
+// })
