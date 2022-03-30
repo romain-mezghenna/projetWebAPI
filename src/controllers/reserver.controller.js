@@ -1,6 +1,6 @@
 const {
     Reserver
-} = require("../models/Reserver.model");
+} = require("../models/reserver.model");
 
 exports.findAll = (req, res) => {
     if (!req.authUser.isAdmin) {
