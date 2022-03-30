@@ -1,6 +1,6 @@
 const {
     Companies
-} = require("../models/Companies.model");
+} = require("../models/companies.model");
 
 exports.findAll = (req, res) => {
         Companies.selectAll()
