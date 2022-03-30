@@ -5,9 +5,9 @@ module.exports = (router) => {
     } = require("../middlewares/auth.middleware")
 
     // Retrieve all pays
-    router.get("/pays", auth, pays.findAll);
+    router.get("/pays", pays.findAll);
 
     // Retrieve a single vol with idVol
-    router.get("/pays/:id", auth, pays.findOneId);
+    router.get("/pays/:id", pays.findOneId);
 
 };

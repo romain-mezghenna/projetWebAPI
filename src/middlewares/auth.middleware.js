@@ -31,6 +31,8 @@ async function auth(req, res, next) {
             });
         }
 
+        // instead of using the userToken, prefer use userDatabase this provides extra security in case of 
+        // someone puts "true" at isAdmin attribute in the localStorage/token in the front
         req.authUser = userDatabase;
 
         return next();

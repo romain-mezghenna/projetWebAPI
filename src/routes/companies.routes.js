@@ -8,10 +8,10 @@ module.exports = (router) => {
     router.post("/companies", auth, companies.save);
 
     // Retrieve all companies
-    router.get("/companies", auth, companies.findAll);
+    router.get("/companies", companies.findAll);
 
     // Retrieve a single companie with idCompanie
-    router.get("/companies/:id", auth, companies.findOneId);
+    router.get("/companies/:id", companies.findOneId);
 
     // Update a companie with idCompanie
     router.patch("/companies/:id", auth, companies.update);

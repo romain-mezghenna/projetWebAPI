@@ -1,4 +1,5 @@
 const {sql} = require("./db")
+const {SHA256} = require('../security/hash')
 
 class Users {
     constructor(id,nom,prenom,mail,isAdmin,tel,idVille){
@@ -15,7 +16,7 @@ class Users {
      * Fetch all the users from the database
      * @returns Promise
      */
-    static selectAll() { 
+    static selectAll() {
         return new Promise((resolve, reject) => {
             sql.query("SELECT idUser FROM Users", (err, res) => {
                 if (err) {
@@ -73,7 +74,7 @@ class Users {
                 obj.nomUser,
                 obj.prenomUser,
                 obj.mail,
-                obj.password,
+                SHA256(obj.password),
                 obj.tel,
                 obj.nomVille,
                 obj.idPays
@@ -94,11 +95,16 @@ class Users {
      * @returns Promise
      */
     static update(id, obj) {
+        console.log(obj);
        return new Promise((resolve, reject) => {
            let query = "UPDATE `Users` SET ";
            Object.keys(obj).forEach((key) => {
-               query += `${key} = ${sql.escape(obj[key])},`;
-           }); 
+               if(key == 'password'){
+                    query += `${key} = ${sql.escape(SHA256(obj[key]))},`;
+               } else {
+                    query += `${key} = ${sql.escape(obj[key])},`;
+               }
+           });
            query = query.slice(0, -1);
            query += ` WHERE idUser = ${sql.escape(id)}`;
            sql.query(query, (err, res) => {
@@ -133,7 +139,7 @@ class Users {
      */
     static login(login, password){
         return new Promise(((resolve, reject) => {
-            sql.query("SELECT * FROM `Users` WHERE mail = ? AND password = ? ", [login,password], (err, res) => {
+            sql.query("SELECT * FROM `Users` WHERE mail = ? AND password = ? ", [login, SHA256(password)], (err, res) => {
                 if (err) {
                     console.error("Error " + err);
                     return reject(err);

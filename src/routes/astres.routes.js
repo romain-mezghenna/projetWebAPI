@@ -11,10 +11,10 @@ module.exports = (router) => {
     router.post("/astres",auth, astres.save); 
 
     // Retrieve all astres
-    router.get("/astres", auth, astres.findAll); 
+    router.get("/astres",astres.findAll); 
 
     // Retrieve a single astre with idAstre
-    router.get("/astres/:id", auth, astres.findOneId);
+    router.get("/astres/:id",astres.findOneId);
 
     // Update a astre with idAstre
     router.patch("/astres/:id", auth, astres.update);

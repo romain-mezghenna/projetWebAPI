@@ -72,7 +72,7 @@ class Vols {
      */
     static save(obj) {
         return new Promise((resolve, reject) => {
-            sql.query("INSERT INTO `Vols`(`date`, `heureDepart`, `duree`, `description`, `idAstre`, prix`, `idPas`) " +
+            sql.query("INSERT INTO `Vols`(`date`, `heureDepart`, `duree`, `description`, `idAstre`, `prix`, `idPas`) " +
                         "VALUES (?,?,?,?,?,?,?)",
                 [obj.date, obj.heureDepart, obj.duree, obj.description, obj.idAstre, obj.prix, obj.idPas], (err, res) => {
                     if (err) {

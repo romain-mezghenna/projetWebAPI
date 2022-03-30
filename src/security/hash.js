@@ -4,7 +4,7 @@
  * Original code by Angel Marin, Paul Johnston
  **/
 
-exports.modules = function SHA256(s) {
+exports.SHA256 = (s) => {
     var chrsz = 8;
     var hexcase = 0;
 

@@ -51,7 +51,7 @@ class Lanceurs {
                     return reject(err);
                 }
                 if (res.length > 0) {
-                    let astre = new Lanceurs(res[0].idLanceur, res[0].nomLanceur,res[0].idLanceur,res[0].image);
+                    let astre = new Lanceurs(res[0].idLanceur, res[0].nomLanceur,res[0].idCompanie,res[0].image);
                     return resolve(astre);
                 } else {
                     return reject(404);

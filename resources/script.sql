@@ -3,16 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 15 mars 2022 à 19:31
+-- Généré le : mer. 30 mars 2022 à 19:40
 -- Version du serveur : 10.4.21-MariaDB
 -- Version de PHP : 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -34,8 +31,21 @@ CREATE TABLE `Astres` (
   `idAstre` int(8) NOT NULL,
   `nomAstre` varchar(30) NOT NULL,
   `description` text NOT NULL,
-  `image` varchar(100) NOT NULL COMMENT 'nom du fichier en local'
+  `image` varchar(1000) NOT NULL COMMENT 'nom du fichier en local'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `Astres`
+--
+
+INSERT INTO `Astres` (`idAstre`, `nomAstre`, `description`, `image`) VALUES
+(1, 'Mercure', 'Mercure est la planète la plus proche du Soleil et la moins massive du Système solaire. Mercure est une planète tellurique, comme le sont également Vénus, la Terre et Mars. Elle est près de trois fois plus petite et presque vingt fois moins massive que la Terre mais presque aussi dense qu\'elle.', 'https://images-assets.nasa.gov/image/PIA14250/PIA14250~orig.jpg'),
+(3, 'Venus', 'Vénus est la deuxième planète du Système solaire par ordre d\'éloignement au Soleil, et la sixième plus grosse aussi bien par la masse que le diamètre. Elle doit son nom à la déesse romaine de l\'amour.', 'https://images-assets.nasa.gov/image/PIA00111/PIA00111~orig.jpg'),
+(4, 'La Terre', 'La Terre est la troisième planète par ordre d\'éloignement au Soleil et la cinquième plus grande du Système solaire aussi bien par la masse que le diamètre. Par ailleurs, elle est le seul objet céleste connu pour abriter la vie. Elle orbite autour du Soleil en 365,256 jours solaires', 'https://images-assets.nasa.gov/image/PIA00122/PIA00122~orig.jpg'),
+(5, 'Mars', 'Mars est la quatrième planète du Système solaire par ordre croissant de la distance au Soleil et la deuxième par ordre croissant de la taille et de la masse. C’est une planète tellurique, comme le sont Mercure, Vénus et la Terre, environ dix fois moins massive que la Terre mais dix fois plus massive que la Lune.', 'https://images-assets.nasa.gov/image/PIA07893/PIA07893~orig.jpg'),
+(6, 'Jupiter', 'Jupiter est la cinquième planète du Système solaire par ordre d\'éloignement au Soleil, et la plus grande par la taille et la masse devant Saturne, qui est comme elle une planète géante gazeuse. Elle est même plus volumineuse que toutes les autres planètes réunies avec son rayon moyen de 69 911 km, qui vaut environ onze fois celui de la Terre, et sa masse de 1,898 2 × 1027 kg, qui est 318 fois plus grande.', 'https://images-assets.nasa.gov/image/hubble-captures-vivid-auroras-in-jupiters-atmosphere_28000029525_o/hubble-captures-vivid-auroras-in-jupiters-atmosphere_28000029525_o~orig.jpg'),
+(7, 'Saturne', 'Saturne est la sixième planète du Système solaire par ordre d\'éloignement au Soleil, et la deuxième plus grande par la taille et la masse après Jupiter, qui est comme elle une planète géante gazeuse. Son rayon moyen de 58 232 km est environ neuf fois et demi celui de la Terre et sa masse de 568,46 × 1024 kg est 95 fois plus grande.', 'https://images-assets.nasa.gov/image/PIA02225/PIA02225~orig.jpg'),
+(8, 'Uranus', 'Uranus est la septième planète du Système solaire par ordre d\'éloignement au Soleil. Elle orbite autour de celui-ci à une distance d\'environ 19,2 unités astronomiques (2,87 milliards de kilomètres), avec une période de révolution de 84,05 années terrestres. Il s\'agit de la quatrième planète la plus massive du Système solaire et de la troisième plus grande par la taille.', 'https://images-assets.nasa.gov/image/PIA18182/PIA18182~orig.jpg');
 
 -- --------------------------------------------------------
 
@@ -45,8 +55,16 @@ CREATE TABLE `Astres` (
 
 CREATE TABLE `Companies` (
   `idCompanie` int(8) NOT NULL,
-  `nomCompanie` int(11) NOT NULL
+  `nomCompanie` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `Companies`
+--
+
+INSERT INTO `Companies` (`idCompanie`, `nomCompanie`) VALUES
+(1, 'SpaceX'),
+(3, 'Blue Origin');
 
 -- --------------------------------------------------------
 
@@ -58,8 +76,17 @@ CREATE TABLE `Lanceurs` (
   `idLanceur` int(8) NOT NULL,
   `nomLanceur` varchar(30) NOT NULL,
   `idCompanie` int(8) NOT NULL,
-  `image` varchar(100) NOT NULL
+  `image` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `Lanceurs`
+--
+
+INSERT INTO `Lanceurs` (`idLanceur`, `nomLanceur`, `idCompanie`, `image`) VALUES
+(1, 'Falcon 9', 1, 'https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/11/copernicus_sentinel-6_lifts_off_on_a_spacex_falcon_9_rocket/22340698-1-eng-GB/Copernicus_Sentinel-6_lifts_off_on_a_SpaceX_Falcon_9_rocket_pillars.jpg'),
+(3, 'Falcon Heavy', 1, 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Falcon_Heavy_cropped.jpg'),
+(4, 'New Glenn 2-Stage', 3, 'https://space.skyrocket.de/img_lau/new-glenn_2stg__3.jpg');
 
 -- --------------------------------------------------------
 
@@ -73,6 +100,14 @@ CREATE TABLE `PasDeTir` (
   `idVille` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `PasDeTir`
+--
+
+INSERT INTO `PasDeTir` (`idPas`, `nomPas`, `idVille`) VALUES
+(1, 'Vostotchny', 6),
+(2, 'Kourou', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -84,249 +119,9 @@ CREATE TABLE `Pays` (
   `nomPays` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `Users`
+-- Déchargement des données de la table `Pays`
 --
-
-CREATE TABLE `Users` (
-  `idUser` int(8) NOT NULL,
-  `nomUser` varchar(30) NOT NULL,
-  `prenomUser` varchar(30) NOT NULL,
-  `mail` varchar(30) NOT NULL,
-  `password` varchar(64) NOT NULL,
-  `isAdmin` bit(1) NOT NULL DEFAULT 0,
-  `tel` varchar(10) NOT NULL,
-  `idVille` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `Ville`
---
-
-CREATE TABLE `Ville` (
-  `idVille` int(8) NOT NULL,
-  `nomVille` varchar(30) NOT NULL,
-  `idPays` int(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `Vols`
---
-
-CREATE TABLE `Vols` (
-  `idVol` int(8) NOT NULL,
-  `date` date NOT NULL,
-  `heureDepart` time NOT NULL,
-  `durée` int(11) NOT NULL COMMENT 'En jours',
-  `description` text NOT NULL,
-  `idAstre` int(11) NOT NULL,
-  `prix` float NOT NULL,
-  `idPas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `Astres`
---
-ALTER TABLE `Astres`
-  ADD PRIMARY KEY (`idAstre`);
-
---
--- Index pour la table `Companies`
---
-ALTER TABLE `Companies`
-  ADD PRIMARY KEY (`idCompanie`);
-
---
--- Index pour la table `Lanceurs`
---
-ALTER TABLE `Lanceurs`
-  ADD PRIMARY KEY (`idLanceur`),
-  ADD KEY `fk_lanceur_companie` (`idCompanie`);
-
---
--- Index pour la table `PasDeTir`
---
-ALTER TABLE `PasDeTir`
-  ADD PRIMARY KEY (`idPas`),
-  ADD KEY `fk_pasdetir_ville` (`idVille`);
-
---
--- Index pour la table `Pays`
---
-ALTER TABLE `Pays`
-  ADD PRIMARY KEY (`idPays`);
-
---
--- Index pour la table `Users`
---
-ALTER TABLE `Users`
-  ADD PRIMARY KEY (`idUser`),
-  ADD KEY `fk_users_ville` (`idVille`);
-
---
--- Index pour la table `Ville`
---
-ALTER TABLE `Ville`
-  ADD PRIMARY KEY (`idVille`),
-  ADD KEY `fk_ville_pays` (`idPays`);
-
---
--- Index pour la table `Vols`
---
-ALTER TABLE `Vols`
-  ADD PRIMARY KEY (`idVol`),
-  ADD KEY `fk_vols_astres` (`idAstre`),
-  ADD KEY `fk_vols_pasdetir` (`idPas`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `Astres`
---
-ALTER TABLE `Astres`
-  MODIFY `idAstre` int(8) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `Companies`
---
-ALTER TABLE `Companies`
-  MODIFY `idCompanie` int(8) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `Lanceurs`
---
-ALTER TABLE `Lanceurs`
-  MODIFY `idLanceur` int(8) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `PasDeTir`
---
-ALTER TABLE `PasDeTir`
-  MODIFY `idPas` int(8) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `Pays`
---
-ALTER TABLE `Pays`
-  MODIFY `idPays` int(8) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `Users`
---
-ALTER TABLE `Users`
-  MODIFY `idUser` int(8) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `Ville`
---
-ALTER TABLE `Ville`
-  MODIFY `idVille` int(8) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `Vols`
---
-ALTER TABLE `Vols`
-  MODIFY `idVol` int(8) NOT NULL AUTO_INCREMENT;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `Lanceurs`
---
-ALTER TABLE `Lanceurs`
-  ADD CONSTRAINT `fk_lanceur_companie` FOREIGN KEY (`idCompanie`) REFERENCES `Companies` (`idCompanie`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `PasDeTir`
---
-ALTER TABLE `PasDeTir`
-  ADD CONSTRAINT `fk_pasdetir_ville` FOREIGN KEY (`idVille`) REFERENCES `Ville` (`idVille`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `Users`
---
-ALTER TABLE `Users`
-  ADD CONSTRAINT `fk_users_ville` FOREIGN KEY (`idVille`) REFERENCES `Ville` (`idVille`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `Ville`
---
-ALTER TABLE `Ville`
-  ADD CONSTRAINT `fk_ville_pays` FOREIGN KEY (`idPays`) REFERENCES `Pays` (`idPays`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `Vols`
---
-ALTER TABLE `Vols`
-  ADD CONSTRAINT `fk_vols_astres` FOREIGN KEY (`idAstre`) REFERENCES `Astres` (`idAstre`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_vols_pasdetir` FOREIGN KEY (`idPas`) REFERENCES `PasDeTir` (`idPas`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-
-DELIMITER //
-CREATE OR REPLACE PROCEDURE addUser(
-  IN p_nomUser VARCHAR(30),
-  IN p_prenomUser VARCHAR(30),
-  IN p_mail VARCHAR(30),
-  IN p_passwd VARCHAR(64),
-  IN p_tel VARCHAR(10),
-  IN p_nomVille VARCHAR(30),
-  IN p_idPays INT(8)
-)
-BEGIN
-
-  DECLARE v_idCity INT;
-
-  IF((SELECT COUNT(*) FROM Ville V WHERE V.nomVille LIKE p_nomVille) > 0) THEN
-    SELECT idVille INTO v_idCity FROM Ville V WHERE V.nomVille LIKE p_nomVille;
-  ELSE
-    INSERT INTO Ville (`nomVille`,`idPays`) VALUES (p_nomVille,p_idPays);
-    SET v_idCity = LAST_INSERT_ID();
-  END IF;
-  INSERT INTO Users (`nomUser`,`prenomUser`,`mail`,`password`,`tel`,`idVille`) VALUES(p_nomUser,p_prenomUser,p_mail,p_passwd,p_tel,v_idCity);
-
-END//
-
-DELIMITER ;
-
-
-
-DELIMITER //
-CREATE OR REPLACE PROCEDURE addPasDeTir(
-  IN p_nomPas VARCHAR(30),
-  IN p_nomVille VARCHAR(30),
-  IN p_idPays INT(8)
-)
-BEGIN
-
-  DECLARE v_idCity INT;
-
-  IF((SELECT COUNT(*) FROM Ville V WHERE V.nomVille LIKE p_nomVille) > 0) THEN
-    SELECT idVille INTO v_idCity FROM Ville V WHERE V.nomVille LIKE p_nomVille;
-  ELSE
-    INSERT INTO Ville (`nomVille`,`idPays`) VALUES (p_nomVille,p_idPays);
-    SET v_idCity = LAST_INSERT_ID();
-  END IF;
-  INSERT INTO PasDeTir (`nomPas`,`idVille`) VALUES(p_nomPas,v_idCity);
-
-END//
-
-DELIMITER ;
-
-
 
 INSERT INTO `Pays` (`idPays`, `nomPays`) VALUES
 (1, 'France'),
@@ -371,7 +166,7 @@ INSERT INTO `Pays` (`idPays`, `nomPays`) VALUES
 (40, 'Central African Republic'),
 (41, 'Congo [Republic]'),
 (42, 'Switzerland'),
-(43, "Côte d\'Ivoire"),
+(43, 'Côte d\'Ivoire'),
 (44, 'Cook Islands'),
 (45, 'Chile'),
 (46, 'Cameroon'),
@@ -398,7 +193,6 @@ INSERT INTO `Pays` (`idPays`, `nomPays`) VALUES
 (67, 'Ethiopia'),
 (68, 'Finland'),
 (69, 'Fiji'),
-(70, 'Falkland Islands [Islas Malvinas]'),
 (71, 'Micronesia'),
 (72, 'Faroe Islands'),
 (73, 'Gabon'),
@@ -415,14 +209,12 @@ INSERT INTO `Pays` (`idPays`, `nomPays`) VALUES
 (84, 'Guadeloupe'),
 (85, 'Equatorial Guinea'),
 (86, 'Greece'),
-(87, 'South Georgia and the South Sandwich Islands'),
 (88, 'Guatemala'),
 (89, 'Guam'),
 (90, 'Guinea-Bissau'),
 (91, 'Guyana'),
 (92, 'Gaza Strip'),
 (93, 'Hong Kong'),
-(94, 'Heard Island and McDonald Islands'),
 (95, 'Honduras'),
 (96, 'Croatia'),
 (97, 'Haiti'),
@@ -432,7 +224,6 @@ INSERT INTO `Pays` (`idPays`, `nomPays`) VALUES
 (101, 'Israel'),
 (102, 'Isle of Man'),
 (103, 'India'),
-(104, 'British Indian Ocean Territory'),
 (105, 'Iraq'),
 (106, 'Iran'),
 (107, 'Iceland'),
@@ -559,7 +350,6 @@ INSERT INTO `Pays` (`idPays`, `nomPays`) VALUES
 (228, 'Uruguay'),
 (229, 'Uzbekistan'),
 (230, 'Vatican City'),
-(231, 'Saint Vincent and the Grenadines'),
 (232, 'Venezuela'),
 (233, 'British Virgin Islands'),
 (234, 'U.S. Virgin Islands'),
@@ -574,7 +364,279 @@ INSERT INTO `Pays` (`idPays`, `nomPays`) VALUES
 (243, 'Zambia'),
 (244, 'Zimbabwe');
 
+-- --------------------------------------------------------
 
+--
+-- Structure de la table `Reserver`
+--
 
+CREATE TABLE `Reserver` (
+  `idVol` int(8) NOT NULL,
+  `idUser` int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Users`
+--
+
+CREATE TABLE `Users` (
+  `idUser` int(8) NOT NULL,
+  `nomUser` varchar(30) NOT NULL,
+  `prenomUser` varchar(30) NOT NULL,
+  `mail` varchar(64) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `isAdmin` bit(1) NOT NULL DEFAULT b'0',
+  `tel` varchar(10) NOT NULL,
+  `idVille` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Ville`
+--
+
+CREATE TABLE `Ville` (
+  `idVille` int(8) NOT NULL,
+  `nomVille` varchar(30) NOT NULL,
+  `idPays` int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `Ville`
+--
+
+INSERT INTO `Ville` (`idVille`, `nomVille`, `idPays`) VALUES
+(1, 'Montpellier', 1),
+(2, 'Kourou', 1),
+(4, 'Rennes', 1),
+(5, 'Paris', 1),
+(6, 'Tsiolkovski', 188),
+(7, 'Roubaix', 1),
+(9, 'Bordeaux', 1),
+(10, 'Toulouse', 1),
+(11, 'z', 1),
+(12, 'test', 1),
+(13, 'zihf', 1),
+(14, 'Mende', 2),
+(15, 'Rio de Janero', 30),
+(16, 'aze', 1),
+(17, 'Alès', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Voler`
+--
+
+CREATE TABLE `Voler` (
+  `idVol` int(8) NOT NULL,
+  `idLanceur` int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Vols`
+--
+
+CREATE TABLE `Vols` (
+  `idVol` int(8) NOT NULL,
+  `date` date NOT NULL,
+  `heureDepart` time NOT NULL,
+  `duree` int(11) NOT NULL COMMENT 'En jours',
+  `description` text NOT NULL,
+  `idAstre` int(11) NOT NULL,
+  `prix` float NOT NULL,
+  `idPas` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `Vols`
+--
+
+INSERT INTO `Vols` (`idVol`, `date`, `heureDepart`, `duree`, `description`, `idAstre`, `prix`, `idPas`) VALUES
+(1, '2022-04-16', '11:00:00', 10, 'Un vol en orbite autour de mercure et au plus près du soleil ! ', 1, 1000000, 2),
+(2, '2022-03-28', '09:00:00', 3, 'Un superbe vol vers Mercure en seulement 3 jours pour une expérience inoubliable.', 1, 2, 1),
+(3, '2022-03-30', '21:30:00', 21, 'En direction de Jupiter et ses lunes ! La plus grande planète du système solaire vous attends pour un séjour hors du temps.\r\n', 6, 2000000, 2),
+(4, '2022-04-17', '10:00:00', 15, 'Un voyage sur la planète rouge, sensations fortes garanties ! À la conquête de l\'espace pour des aventures dantesque !', 5, 1200000, 2);
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `Astres`
+--
+ALTER TABLE `Astres`
+  ADD PRIMARY KEY (`idAstre`);
+
+--
+-- Index pour la table `Companies`
+--
+ALTER TABLE `Companies`
+  ADD PRIMARY KEY (`idCompanie`);
+
+--
+-- Index pour la table `Lanceurs`
+--
+ALTER TABLE `Lanceurs`
+  ADD PRIMARY KEY (`idLanceur`),
+  ADD KEY `fk_lanceur_companie` (`idCompanie`);
+
+--
+-- Index pour la table `PasDeTir`
+--
+ALTER TABLE `PasDeTir`
+  ADD PRIMARY KEY (`idPas`),
+  ADD KEY `fk_pasdetir_ville` (`idVille`);
+
+--
+-- Index pour la table `Pays`
+--
+ALTER TABLE `Pays`
+  ADD PRIMARY KEY (`idPays`);
+
+--
+-- Index pour la table `Reserver`
+--
+ALTER TABLE `Reserver`
+  ADD PRIMARY KEY (`idVol`,`idUser`),
+  ADD KEY `fk_reserver_user` (`idUser`);
+
+--
+-- Index pour la table `Users`
+--
+ALTER TABLE `Users`
+  ADD PRIMARY KEY (`idUser`),
+  ADD KEY `fk_users_ville` (`idVille`);
+
+--
+-- Index pour la table `Ville`
+--
+ALTER TABLE `Ville`
+  ADD PRIMARY KEY (`idVille`),
+  ADD KEY `fk_ville_pays` (`idPays`);
+
+--
+-- Index pour la table `Voler`
+--
+ALTER TABLE `Voler`
+  ADD PRIMARY KEY (`idVol`,`idLanceur`),
+  ADD KEY `fk_voler_lanceur` (`idLanceur`);
+
+--
+-- Index pour la table `Vols`
+--
+ALTER TABLE `Vols`
+  ADD PRIMARY KEY (`idVol`),
+  ADD KEY `fk_vols_astres` (`idAstre`),
+  ADD KEY `fk_vols_pasdetir` (`idPas`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `Astres`
+--
+ALTER TABLE `Astres`
+  MODIFY `idAstre` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT pour la table `Companies`
+--
+ALTER TABLE `Companies`
+  MODIFY `idCompanie` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `Lanceurs`
+--
+ALTER TABLE `Lanceurs`
+  MODIFY `idLanceur` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `PasDeTir`
+--
+ALTER TABLE `PasDeTir`
+  MODIFY `idPas` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `Pays`
+--
+ALTER TABLE `Pays`
+  MODIFY `idPays` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
+
+--
+-- AUTO_INCREMENT pour la table `Users`
+--
+ALTER TABLE `Users`
+  MODIFY `idUser` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT pour la table `Ville`
+--
+ALTER TABLE `Ville`
+  MODIFY `idVille` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT pour la table `Vols`
+--
+ALTER TABLE `Vols`
+  MODIFY `idVol` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `Lanceurs`
+--
+ALTER TABLE `Lanceurs`
+  ADD CONSTRAINT `fk_lanceur_companie` FOREIGN KEY (`idCompanie`) REFERENCES `Companies` (`idCompanie`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `PasDeTir`
+--
+ALTER TABLE `PasDeTir`
+  ADD CONSTRAINT `fk_pasdetir_ville` FOREIGN KEY (`idVille`) REFERENCES `Ville` (`idVille`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `Reserver`
+--
+ALTER TABLE `Reserver`
+  ADD CONSTRAINT `fk_reserver_user` FOREIGN KEY (`idUser`) REFERENCES `Users` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_reserver_vol` FOREIGN KEY (`idVol`) REFERENCES `Vols` (`idVol`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `Users`
+--
+ALTER TABLE `Users`
+  ADD CONSTRAINT `fk_users_ville` FOREIGN KEY (`idVille`) REFERENCES `Ville` (`idVille`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `Ville`
+--
+ALTER TABLE `Ville`
+  ADD CONSTRAINT `fk_ville_pays` FOREIGN KEY (`idPays`) REFERENCES `Pays` (`idPays`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `Voler`
+--
+ALTER TABLE `Voler`
+  ADD CONSTRAINT `fk_voler_lanceur` FOREIGN KEY (`idLanceur`) REFERENCES `Lanceurs` (`idLanceur`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_voler_vols` FOREIGN KEY (`idVol`) REFERENCES `Vols` (`idVol`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `Vols`
+--
+ALTER TABLE `Vols`
+  ADD CONSTRAINT `fk_vols_astres` FOREIGN KEY (`idAstre`) REFERENCES `Astres` (`idAstre`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_vols_pasdetir` FOREIGN KEY (`idPas`) REFERENCES `PasDeTir` (`idPas`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

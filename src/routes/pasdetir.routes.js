@@ -8,7 +8,7 @@ module.exports = (router) => {
     router.post("/pasdetir", auth, pasdetir.save);
 
     // Retrieve all pasdetir
-    router.get("/pasdetir", auth, pasdetir.findAll);
+    router.get("/pasdetir", pasdetir.findAll);
 
     // Retrieve a single companie with idCompanie
     router.get("/pasdetir/:id", auth, pasdetir.findOneId);

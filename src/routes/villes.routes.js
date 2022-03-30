@@ -8,10 +8,10 @@ module.exports = (router) => {
     router.post("/villes", auth, villes.save);
 
     // Retrieve all villes
-    router.get("/villes", auth, villes.findAll);
+    router.get("/villes", villes.findAll);
 
     // Retrieve a single vol with idVol
-    router.get("/villes/:id", auth, villes.findOneId);
+    router.get("/villes/:id", villes.findOneId);
 
     // Update a vol with idVol
     router.patch("/villes/:id", auth, villes.update);
