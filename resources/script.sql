@@ -627,7 +627,7 @@ ALTER TABLE `Ville`
 --
 ALTER TABLE `Voler`
   ADD CONSTRAINT `fk_voler_lanceur` FOREIGN KEY (`idLanceur`) REFERENCES `Lanceurs` (`idLanceur`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_voler_vols` FOREIGN KEY (`idVol`) REFERENCES `Vols` (`idVol`) ON DELETE CASCADE ON UPDATE CASCADE;
+GN KEY (`idVol`) REFERENCES `Vols` (`idVol`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Vols`
@@ -640,3 +640,55 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+DELIMITER //
+CREATE OR REPLACE PROCEDURE addUser(
+  IN p_nomUser VARCHAR(30),
+  IN p_prenomUser VARCHAR(30),
+  IN p_mail VARCHAR(30),
+  IN p_passwd VARCHAR(64),
+  IN p_tel VARCHAR(10),
+  IN p_nomVille VARCHAR(30),
+  IN p_idPays INT(8)
+)
+BEGIN
+
+  DECLARE v_idCity INT;
+
+  IF((SELECT COUNT(*) FROM Ville V WHERE V.nomVille LIKE p_nomVille) > 0) THEN
+    SELECT idVille INTO v_idCity FROM Ville V WHERE V.nomVille LIKE p_nomVille;
+  ELSE
+    INSERT INTO Ville (`nomVille`,`idPays`) VALUES (p_nomVille,p_idPays);
+    SET v_idCity = LAST_INSERT_ID();
+  END IF;
+  INSERT INTO Users (`nomUser`,`prenomUser`,`mail`,`password`,`tel`,`idVille`) VALUES(p_nomUser,p_prenomUser,p_mail,p_passwd,p_tel,v_idCity);
+
+END//
+
+DELIMITER ;
+
+
+
+DELIMITER //
+CREATE OR REPLACE PROCEDURE addPasDeTir(
+  IN p_nomPas VARCHAR(30),
+  IN p_nomVille VARCHAR(30),
+  IN p_idPays INT(8)
+)
+BEGIN
+
+  DECLARE v_idCity INT;
+
+  IF((SELECT COUNT(*) FROM Ville V WHERE V.nomVille LIKE p_nomVille) > 0) THEN
+    SELECT idVille INTO v_idCity FROM Ville V WHERE V.nomVille LIKE p_nomVille;
+  ELSE
+    INSERT INTO Ville (`nomVille`,`idPays`) VALUES (p_nomVille,p_idPays);
+    SET v_idCity = LAST_INSERT_ID();
+  END IF;
+  INSERT INTO PasDeTir (`nomPas`,`idVille`) VALUES(p_nomPas,v_idCity);
+
+END//
+
+DELIMITER ;
